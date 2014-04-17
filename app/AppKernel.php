@@ -35,20 +35,11 @@ class AppKernel extends Kernel
             new \A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new \Hexmedia\AdministratorBundle\HexmediaAdministratorBundle(),
             new \Hexmedia\UserBundle\HexmediaUserBundle(),
-            new \Hexmedia\NewsletterBundle\HexmediaNewsletterBundle(),
             new \Hexmedia\SliderBundle\HexmediaSliderBundle(),
             new \Hexmedia\NewsBundle\HexmediaNewsBundle(),
             new \Hexmedia\ContentBundle\HexmediaContentBundle(),
             new \Hexmedia\CatalogBundle\HexmediaCatalogBundle(),
             new \Hexmedia\TimeFormatterBundle\HexmediaTimeFormatterBundle(),
-            new \CinemaForum\MainBundle\CinemaForumMainBundle(),
-            new \CinemaForum\SliderBundle\CinemaForumSliderBundle(),
-            new \CinemaForum\NewsBundle\CinemaForumNewsBundle(),
-            new \CinemaForum\ContentBundle\CinemaForumContentBundle(),
-            new \CinemaForum\CatalogBundle\CinemaForumCatalogBundle(),
-            new \CinemaForum\NewsletterBundle\CinemaForumNewsletterBundle(),
-            new \CinemaForum\SpeakersBundle\CinemaForumSpeakersBundle(),
-            new \CinemaForum\UserBundle\CinemaForumUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
