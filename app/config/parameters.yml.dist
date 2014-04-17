@@ -1,0 +1,30 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: cinema-forum
+    database_user: cinema-forum
+    database_password: 12345
+    mailer_transport: smtp
+    mailer_host: smtp.newcineforum.pl
+    mailer_user: newsletter@newcineforum.pl
+    mailer_password:
+    mailer_port: 587
+    mail_from: info@hexmedia.pl
+    mail_from_name: Hexmedia
+    locale: pl
+    secret: HEXMEDIA
+    locales:
+        - pl
+    per_page: 15
+    sentry: false
+    media_url_prefix: /media/upload/media
+    java_bin: /usr/bin/java
+    node_bin: /usr/local/bin/node
+    node_modules:
+        - /usr/local/lib/node_modules
+    npm_bin: /usr/bin/npm
+    grunt_bin: /usr/bin/grunt
+    searchindexprefix: hexmedia___
+    domain: hexmedia.pl
+    ga_code: false

@@ -1,0 +1,28 @@
+_hexmedia_user:
+    resource: "@HexmediaUserBundle/Resources/config/routing_fos.yml"
+    prefix: /
+
+_users_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /registration
+
+_hexmedia_admin:
+    resource: "routing/admin.yml"
+    prefix:   /admin
+
+_hexmedia_admin_user:
+    resource: "@HexmediaAdministratorBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_imagine:
+    resource: .
+    type:     imagine
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+
+_hexmedia_newsletter_stats:
+    resource: "@HexmediaNewsletterBundle/Resources/config/routing/stat.yml"

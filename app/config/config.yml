@@ -1,0 +1,178 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session: ~
+    fragments:       ~
+
+sensio_framework_extra:
+    view:
+        annotations: false
+
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    java: %java_bin%
+    filters:
+        uglifyjs2:
+            bin: %kernel.root_dir%/Resources/node/node_modules/uglify-js/bin/uglifyjs
+        uglifycss:
+            bin: %kernel.root_dir%/Resources/node/node_modules/uglifycss/uglifycss
+        less:
+            node: %node_bin%
+            node_paths: %node_modules%
+            apply_to: "\.less$"
+
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        ga_code: %ga_code%
+        site_logo: bundles/cinemaforummain/images/logo_en.png
+        site_name: CinemaForum
+        cms_show_powered_by: 1
+    form:
+        resources:
+            - 'MopaBootstrapBundle:Form:fields.html.twig'
+            - 'HexmediaAdministratorBundle:Form:fields.html.twig'
+            - 'HexmediaContentBundle:Form:fields.html.twig'
+
+fos_rest:
+    view:
+      view_response_listener: true
+      failed_validation: HTTP_BAD_REQUEST
+      default_engine: php
+      formats:
+          json: true
+          xml: true
+          rss: true
+#    format_listener:
+#        rule:
+#            path: ~
+#            host: ~
+#            prefer_extension:     true
+#            priorities: ["html", "json", "*/*"]
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.json
+    param_fetcher_listener: true
+    allowed_methods_listener: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+    port:      %mailer_port% 
+
+liip_imagine:
+    filter_sets:
+        big_admin_square:
+            quality: 100
+            filters:
+                thumbnail: { size: [300, 300], mode: inset }
+                strip: ~
+        attach_admin_square:
+            quality: 100
+            filters:
+                thumbnail: { size: [150, 150], mode: inset }
+                strip: ~
+        medium_admin_square:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 100], mode: inset }
+        small_admin_square:
+            quality: 100
+            filters:
+                thumbnail: { size: [30, 30], mode: outbound }
+
+mopa_bootstrap:
+    form:
+        horizontal_label_class: col-md-3
+        horizontal_input_wrapper_class: col-md-9
+
+vich_uploader:
+    db_driver: orm
+    gaufrette: true
+    storage: vich_uploader.storage.gaufrette
+    mappings:
+        media:
+            uri_prefix: %media_url_prefix%/media
+            upload_destination: media_fs
+            namer: vich_uploader.namer_uniqid
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+
+
+knp_gaufrette:
+    adapters:
+        media_adapter:
+            local:
+                directory: %kernel.root_dir%/../web%media_url_prefix%/media
+                create: true
+    filesystems:
+        media_fs:
+            adapter:  media_adapter
+    stream_wrapper: ~
+
+hexmedia_administrator:
+    seo: ~
+    ga:
+        code: %ga_code%
+
+be_simple_i18n_routing: ~
+
+a2lix_translation_form:
+    locales: %locales%
+    default_required: true
+    manager_registry: doctrine
+    templating: "HexmediaAdministratorBundle:A2lix:form.html.twig"
+
+monolog:
+    handlers:
+        raven:
+            type: raven
+            level: error
+            action_level: warning
+            dsn: %sentry%

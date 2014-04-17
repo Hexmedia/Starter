@@ -1,0 +1,23 @@
+_hexmedia_admin:
+    resource: "@HexmediaAdministratorBundle/Resources/config/routing/admin.yml"
+
+_hexmedia_admin_content:
+    resource: "@HexmediaContentBundle/Resources/config/routing/admin.yml"
+    prefix: /content
+
+_hexmedia_admin_slider:
+    resource: "@HexmediaSliderBundle/Resources/config/routing/admin.yml"
+    prefix: /slider
+
+_hexmedia_admin_user:
+    resource: "@HexmediaUserBundle/Resources/config/routing/admin.yml"
+    prefix: /user
+
+#i_hexmedia_admin_newsletter:
+#    resource: "@HexmediaNewsletterBundle/Resources/config/routing/admin.yml"
+#    prefix: /newsletter
+
+_hexmedia_admin_news:
+    resource: "@HexmediaNewsBundle/Resources/config/routing/admin.yml"
+    prefix: /news
+
